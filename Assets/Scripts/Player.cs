@@ -4,35 +4,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float speed = 5.0f;
+    float speed = 100.0f;
+    Rigidbody RB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("left"))
+        Vector3 pos = transform.position;
+        if(Input.GetKey("left"))
         {
-            transform.Translate(-speed * Time.deltaTime, 0, 0); 
+            pos.x -= speed * Time.deltaTime;
+
         }
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKey("right"))
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
+            pos.x += speed * Time.deltaTime;
+
         }
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKey("up"))
         {
-            transform.Translate(0, speed * Time.deltaTime, 0);
+            pos.y += speed * Time.deltaTime;
+
         }
-        if (Input.GetKeyDown("down"))
+        if (Input.GetKey("down"))
         {
-            transform.Translate(0, -speed * Time.deltaTime, 0);
+            pos.y -= speed * Time.deltaTime;
+
         }
+
+       // transform.position = pos;
+        RB.MovePosition(pos);
     }
 
-    void OnCollisionEnter (Collision collision)
+    /*void OnCollisionEnter (Collision collision)
     {
         if (collision.gameObject.tag == "walls")
         {
@@ -53,5 +62,5 @@ public class Player : MonoBehaviour
                 transform.Translate(0, speed * Time.deltaTime, 0);
             }
         }
-    }
+    }*/
 }
