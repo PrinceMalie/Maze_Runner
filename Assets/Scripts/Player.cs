@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI; 
 public class Player : MonoBehaviour
 {
     float speed = 100.0f;
-    int key_count = 0; 
+    int key_count = 0;
+
+    public Text myText; 
+
     Rigidbody RB;
     // Start is called before the first frame update
     void Start()
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "door" && key_count == 3)
         {
             Destroy(collision.gameObject);
-
+            Application.Quit();
         }
     }
 }
