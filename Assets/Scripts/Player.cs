@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 public class Player : MonoBehaviour
 {
-    float speed = 100.0f;
+    float speed = 5.0f;
     int key_count = 0;
 
     public Text myText; 
