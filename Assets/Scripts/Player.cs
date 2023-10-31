@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     float speed = 100.0f;
+    int key_count = 0; 
     Rigidbody RB;
     // Start is called before the first frame update
     void Start()
@@ -41,26 +42,19 @@ public class Player : MonoBehaviour
         RB.MovePosition(pos);
     }
 
-    /*void OnCollisionEnter (Collision collision)
+    void OnCollisionEnter (Collision collision)
     {
-        if (collision.gameObject.tag == "walls")
+        if (collision.gameObject.tag == "keys")
         {
-            if (Input.GetKeyDown("left"))
-            {
-                transform.Translate(speed * Time.deltaTime, 0, 0);
-            }
-            if (Input.GetKeyDown("right"))
-            {
-                transform.Translate(-speed * Time.deltaTime, 0, 0);
-            }
-            if (Input.GetKeyDown("up"))
-            {
-                transform.Translate(0, -speed * Time.deltaTime, 0);
-            }
-            if (Input.GetKeyDown("down"))
-            {
-                transform.Translate(0, speed * Time.deltaTime, 0);
-            }
+            Destroy(collision.gameObject);
+
+            key_count++;
         }
-    }*/
+
+        if(collision.gameObject.tag == "door" && key_count == 3)
+        {
+            Destroy(collision.gameObject);
+
+        }
+    }
 }
