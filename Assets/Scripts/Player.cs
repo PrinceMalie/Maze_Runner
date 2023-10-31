@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float speed = 5.0f; 
+    float speed = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,21 +34,24 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter (Collision collision)
     {
-        if (Input.GetKeyDown("left"))
+        if (collision.gameObject.tag == "walls")
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKeyDown("right"))
-        {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKeyDown("up"))
-        {
-            transform.Translate(0, -speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            transform.Translate(0, speed * Time.deltaTime, 0);
+            if (Input.GetKeyDown("left"))
+            {
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKeyDown("right"))
+            {
+                transform.Translate(-speed * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKeyDown("up"))
+            {
+                transform.Translate(0, -speed * Time.deltaTime, 0);
+            }
+            if (Input.GetKeyDown("down"))
+            {
+                transform.Translate(0, speed * Time.deltaTime, 0);
+            }
         }
     }
 }
